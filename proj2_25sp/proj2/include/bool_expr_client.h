@@ -1,34 +1,29 @@
-// Copyright wthacher 2025
+//copyright wthacher
+#ifndef IPC_DOMAIN_SOCKET_CLIENT_H_
+#define IPC_DOMAIN_SOCKET_CLIENT_H_
 
-#ifndef BOOL_EXPR_CLIENT_H
-#define BOOL_EXPR_CLIENT_H
-
-#include <cstdlib>
-#include <cstring>
-// Would not compile without libraries
-#include <sys/socket.h>  // NOLINT
-#include <sys/un.h>  // NOLINT
-#include <unistd.h>  // NOLINT
-#include <iostream>
-#include <vector>
-#include <string>
 #include <domain_socket.h>
 
-#define BUFFER_SIZE 256
+#include <cstddef>  // using size_t
+#include <cstdlib>  // exit
+#include <csignal>
+
+#include <string>
+#include <iostream>
 
 
-class BoolExprClient : DomainSocketClient{
+const char kSocket_path[] = "socket_example";
+
+
+///
+/// Domain Socket Client C++ Interface Class
+///
+class BoolExprClient : public DomainSocketClient {
  public:
-    BoolExprClient(const std::string& socket_path,
-        const std::vector<std::string>& truth_values);
-        
-    void Run();
+  using DomainSocketClient::DomainSocketClient;
 
- private:
-    std::string socket_path_;
-    std::vector<std::string> truth_values_;
-    int client_fd_;
-    ssize_t bytes_sent_;
+  void Run(std::string &treufalses);
 };
 
-#endif 
+
+#endif  // IPC_DOMAIN_SOCKET_CLIENT_H_
