@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "iostream": "cpp",
-        "cassert": "cpp"
+        "cassert": "cpp",
+        "unordered_map": "cpp",
+        "cstdlib": "cpp"
     }
 }
